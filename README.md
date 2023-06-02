@@ -2,17 +2,17 @@ Teste Técnico Back End - Attornatus
 
 Usando Spring boot, crie uma API simples para gerenciar Pessoas. Esta API deve permitir: 
 
-- Criar uma pessoa - ok
+- Criar uma pessoa
 
-- Editar uma pessoa - ok
+- Editar uma pessoa
 
-- Consultar uma pessoa - ok
+- Consultar uma pessoa
 
-- Listar pessoas - ok
+- Listar pessoas
 
-- Criar endereço para pessoa - ok
+- Criar endereço para pessoa
 
-- Listar endereços da pessoa - ok
+- Listar endereços da pessoa
 
 - Poder informar qual endereço é o principal da pessoa
 
