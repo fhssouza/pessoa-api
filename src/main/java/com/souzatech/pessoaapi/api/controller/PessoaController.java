@@ -53,4 +53,15 @@ public class PessoaController {
         }
 
     }
+
+    @GetMapping("consultar/{pessoaId}")
+    public ResponseEntity<PessoaResponse> consultar(@PathVariable Long pessoaId){
+        Pessoa pessoa = pessoaRepository.findById(pessoaId).orElse(null);
+
+        if (pessoa != null){
+            PessoaResponse pessoaResponse = mapper.map(pessoa, PessoaResponse.class);
+            return ResponseEntity.ok(pessoaResponse);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
