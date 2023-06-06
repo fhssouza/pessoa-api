@@ -2,6 +2,7 @@ package com.souzatech.pessoaapi.api.controller;
 
 import com.souzatech.pessoaapi.api.controller.request.PessoaNovoEnderecoRequest;
 import com.souzatech.pessoaapi.api.controller.request.PessoaRequest;
+import com.souzatech.pessoaapi.api.controller.response.PessoaEnderecoResponse;
 import com.souzatech.pessoaapi.api.controller.response.PessoaResponse;
 import com.souzatech.pessoaapi.domain.exception.EntidadeNaoEncontradaException;
 import com.souzatech.pessoaapi.domain.model.Pessoa;
@@ -62,10 +63,10 @@ public class PessoaController {
     }
 
     @GetMapping("consultar/{pessoaId}")
-    public ResponseEntity<PessoaResponse> consultar(@PathVariable Long pessoaId){
+    public ResponseEntity<PessoaResponse> consultar(@PathVariable Long pessoaId) {
         Pessoa pessoa = pessoaRepository.findById(pessoaId).orElse(null);
 
-        if (pessoa != null){
+        if (pessoa != null) {
             PessoaResponse pessoaResponse = mapper.map(pessoa, PessoaResponse.class);
             return ok(pessoaResponse);
         }
@@ -74,7 +75,7 @@ public class PessoaController {
 
     @GetMapping("listar")
     @ResponseStatus(HttpStatus.OK)
-    public List<PessoaResponse> listar(){
+    public List<PessoaResponse> listar() {
         List<Pessoa> pessoa = pessoaRepository.findAll();
         return pessoa.stream()
                 .map(p -> new ModelMapper().map(p, PessoaResponse.class))
@@ -87,4 +88,17 @@ public class PessoaController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{pessoaId}").buildAndExpand(pessoa.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @GetMapping("enderecos/{pessoaId}")
+    public ResponseEntity<PessoaEnderecoResponse> listaEnderecos(@PathVariable Long pessoaId) {
+        Pessoa pessoa = pessoaRepository.findById(pessoaId).orElse(null);
+
+        if (pessoa != null) {
+            PessoaEnderecoResponse pessoaEnderecoResponse = mapper.map(pessoa, PessoaEnderecoResponse.class);
+            return ok(pessoaEnderecoResponse);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
+
+
