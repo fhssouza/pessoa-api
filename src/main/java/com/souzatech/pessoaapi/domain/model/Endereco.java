@@ -29,6 +29,9 @@ public class Endereco {
     @Column(nullable = false)
     private String numero;
 
+    @Column(nullable = false)
+    private Boolean principal;
+
     @ManyToOne
     @JoinColumn(name = "cidade_id")
     private Cidade cidade;

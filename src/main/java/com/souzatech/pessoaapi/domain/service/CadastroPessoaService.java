@@ -36,6 +36,7 @@ public class CadastroPessoaService {
         endereco.setLogradouro(pessoaNovoEnderecoRequest.getLogradouro());
         endereco.setCep(pessoaNovoEnderecoRequest.getCep());
         endereco.setNumero(pessoaNovoEnderecoRequest.getNumero());
+        endereco.setPrincipal(pessoaNovoEnderecoRequest.getPrincipal());
         endereco.setCidade(new Cidade(pessoaNovoEnderecoRequest.getCidadeId(), null, null));
 
         pessoa.getEnderecos().add(endereco);

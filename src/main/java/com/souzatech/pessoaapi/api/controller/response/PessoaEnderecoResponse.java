@@ -1,5 +1,6 @@
 package com.souzatech.pessoaapi.api.controller.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.souzatech.pessoaapi.domain.model.Endereco;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,8 @@ public class PessoaEnderecoResponse {
 
     private Long id;
     private String nome;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
 
     private List<Endereco> enderecos = new ArrayList<>();

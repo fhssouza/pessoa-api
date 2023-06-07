@@ -1,5 +1,6 @@
 package com.souzatech.pessoaapi.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -22,7 +23,6 @@ public class Pessoa {
     @Column(nullable = false)
     private String nome;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false)
     private Date dataNascimento;
 

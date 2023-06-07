@@ -49,9 +49,11 @@ public class PessoaController {
 
             if (pessoaAtual != null) {
                 BeanUtils.copyProperties(pessoaRequest, pessoaAtual, "id", "enderecos");
-                pessoaAtual = cadastroPessoaService.salvar(pessoaAtual);
+//                pessoaAtual = cadastroPessoaService.salvar(pessoaAtual);
+                PessoaResponse pessoaResponse = mapper.map(cadastroPessoaService.salvar(pessoaAtual), PessoaResponse.class);
 
-                return ok(pessoaAtual);
+
+                return ok(pessoaResponse);
             }
 
             return ResponseEntity.notFound().build();
@@ -82,7 +84,7 @@ public class PessoaController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping(value = "/cadastrar/{pessoaId}/endereco")
+    @PostMapping(value = "/cadastrar/endereco/{pessoaId}")
     public ResponseEntity<Void> salvarEndereco(@RequestBody PessoaNovoEnderecoRequest pessoaNovoEnderecoRequest, @PathVariable Long pessoaId) {
         Pessoa pessoa = cadastroPessoaService.novoEndereco(pessoaId, pessoaNovoEnderecoRequest);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{pessoaId}").buildAndExpand(pessoa.getId()).toUri();

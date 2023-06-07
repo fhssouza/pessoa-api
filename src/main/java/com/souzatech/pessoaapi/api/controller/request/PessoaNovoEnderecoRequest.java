@@ -13,5 +13,6 @@ public class PessoaNovoEnderecoRequest {
     private String cep;
     private String numero;
     private Long cidadeId;
+    private Boolean principal;
 
 }
